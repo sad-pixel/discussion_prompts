@@ -65,7 +65,7 @@ type WebHookPayload struct {
 }
 
 func SendWebhook(roleId string, prompt string, discordEndpoint string) {
-	url := "https://discord.com/api/webhooks/914741202392326165/D4TQGAf7FdiLCzcwRMOA30e8Dn9zuavqZ_7KrTaBcQycRCS9JVexJofU3Coe0_nJBx6H"
+	url := discordEndpoint
 
 	jsonPayload, _ := json.Marshal(&WebHookPayload{
 		Content: "Hello everyone <@&" + roleId + ">! \n\n" +
