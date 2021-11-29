@@ -50,10 +50,9 @@ func main() {
 		fmt.Println("incorrect subcommand")
 		os.Exit(1)
 	}
-
-	// SendWebhook("1", "e", discordEndpoint)
 }
 
+// Commands
 func ShowHelpMenu() {
 	fmt.Println("Usage:")
 	fmt.Println("$ discussion-prompts [subcommand] [optional env file]")
@@ -69,6 +68,7 @@ func PostRandomPrompt(roleId string, discordEndpoint string, sheetDbEndpoint str
 	MarkPromptPosted(sheetDbEndpoint, prompt.Id)
 }
 
+// Webhook Integration
 type WebHookPayload struct {
 	Content string `json:"content"`
 }
@@ -103,6 +103,7 @@ type DiscussionPrompt struct {
 	IsPosted string `json:"is_posted"`
 }
 
+// SheetDB Integration
 func FetchRandomPrompt(sheetDbEndpoint string) DiscussionPrompt {
 	url := sheetDbEndpoint + "search?sort_order=random&limit=1&is_posted=N&single_object=true"
 
