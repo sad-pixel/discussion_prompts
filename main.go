@@ -19,7 +19,15 @@ func main() {
 		os.Exit(1)
 	}
 
-	err := godotenv.Load()
+	var err error
+	if len(os.Args) == 3 {
+		log.Println("loading extra env file: " + os.Args[2])
+		err = godotenv.Load(os.Args[2])
+	} else {
+		log.Println("loading default env file")
+		err = godotenv.Load()
+	}
+
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
@@ -47,7 +55,7 @@ func main() {
 
 func ShowHelpMenu() {
 	fmt.Println("Usage:")
-	fmt.Println("$ discussion-prompts [subcommand]")
+	fmt.Println("$ discussion-prompts [subcommand] [optional env file]")
 	fmt.Println()
 	fmt.Println("Subcommands:")
 	fmt.Println("help - Display the help menu")
